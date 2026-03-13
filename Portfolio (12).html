@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ansh Verma — Frontend Developer</title>
+  <meta name="description" content="Portfolio of Ansh Verma — Frontend Developer specializing in responsive, design-driven websites. Available for freelance projects.">
+  <meta name="author" content="Ansh Verma">
+  <meta property="og:title" content="Ansh Verma — Frontend Developer">
+  <meta property="og:description" content="Clean code. Sharp design. Real results.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+
+    :root {
+      --accent: #BAFF39; --accent-dim: rgba(186,255,57,0.10);
+      --accent-glow: rgba(186,255,57,0.22); --accent-mid: rgba(186,255,57,0.45);
+      --font-h: 'Syne', sans-serif; --font-b: 'DM Sans', sans-serif; --font-m: 'JetBrains Mono', monospace;
+      --r: 1rem; --rl: 1.5rem; --rxl: 2rem;
+      --ease: 0.35s cubic-bezier(0.4,0,0.2,1); --bounce: cubic-bezier(0.34,1.56,0.64,1);
+    }
+    [data-theme="dark"] {
+      --bg:#050505; --bg-card:rgba(255,255,255,0.03); --bg-solid:#111111; --bg-el:#0a0a0a;
+      --border:rgba(255,255,255,0.06); --bh:rgba(255,255,255,0.14);
+      --tp:#f0f0f0; --ts:#888; --tt:#444;
+      --sh:0 16px 48px rgba(0,0,0,0.5); --sh-s:0 4px 12px rgba(0,0,0,0.3); --noise:.03;
+    }
+    [data-theme="light"] {
+      --bg:#f8f8f5; --bg-card:rgba(0,0,0,0.02); --bg-solid:#ffffff; --bg-el:#f0f0ec;
+      --border:rgba(0,0,0,0.07); --bh:rgba(0,0,0,0.14);
+      --tp:#111; --ts:#666; --tt:#aaa;
+      --sh:0 16px 48px rgba(0,0,0,0.06); --sh-s:0 4px 12px rgba(0,0,0,0.04); --noise:.015;
+      --accent:#5a9e00; --accent-dim:rgba(90,158,0,0.08);
+      --accent-glow:rgba(90,158,0,0.15); --accent-mid:rgba(90,158,0,0.35);
+    }
+
+    body { font-family:var(--font-b); background:var(--bg); color:var(--tp); line-height:1.6; overflow-x:hidden; transition:background var(--ease),color var(--ease); -webkit-font-smoothing:antialiased; }
+    body::after { content:''; position:fixed; inset:0; z-index:9999; pointer-events:none; opacity:var(--noise); background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size:128px 128px; }
+    ::selection { background:var(--accent); color:#000; }
+    a { text-decoration:none; color:inherit; }
+    ul { list-style:none; }
+    h1,h2,h3,h4,h5 { font-family:var(--font-h); font-weight:700; line-height:1.15; }
+    img { display:block; max-width:100%; }
+    ::-webkit-scrollbar { width:5px; }
+    ::-webkit-scrollbar-track { background:transparent; }
+    ::-webkit-scrollbar-thumb { background:var(--tt); border-radius:4px; }
+    ::-webkit-scrollbar-thumb:hover { background:var(--accent); }
+
+    /* UTILITIES */
+    .container { max-width:1140px; margin:0 auto; padding:0 1.5rem; }
+    .section { padding:8rem 0; position:relative; }
+    .section-label { display:inline-flex; align-items:center; gap:.6rem; font-size:.7rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:1.25rem; }
+    .section-label::before { content:'//'; font-family:var(--font-m); font-weight:400; }
+    .section-title { font-size:clamp(2.2rem,5vw,3.5rem); margin-bottom:1rem; letter-spacing:-.03em; }
+    .section-desc { font-size:1rem; color:var(--ts); max-width:32rem; font-weight:300; line-height:1.8; }
+    .ac { color:var(--accent); }
+    .grad { background:linear-gradient(135deg,var(--accent) 0%,#7df9ff 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    [data-theme="light"] .grad { background:linear-gradient(135deg,#3d7a00 0%,#0088aa 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .divider { height:1px; border:0; background:linear-gradient(90deg,transparent,var(--accent-glow),var(--border),transparent); }
+
+    /* REVEAL */
+    .reveal { opacity:1; transform:translateY(0); transition:opacity .8s ease,transform .8s var(--bounce); }
+    .reveal.hidden-before-reveal { opacity:0; transform:translateY(28px); }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .d1{transition-delay:.08s} .d2{transition-delay:.16s} .d3{transition-delay:.24s} .d4{transition-delay:.32s}
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+    .ani { animation:fadeUp .6s ease forwards; }
+
+    /* NAVBAR */
+    .navbar { position:fixed; top:0; left:0; width:100%; z-index:100; padding:1.25rem 0; transition:all var(--ease); }
+    .navbar.scrolled { background:color-mix(in srgb,var(--bg-solid) 80%,transparent); backdrop-filter:blur(20px) saturate(180%); border-bottom:1px solid var(--border); padding:.75rem 0; box-shadow:var(--sh-s); }
+    .nav-inner { display:flex; justify-content:space-between; align-items:center; }
+    .nav-logo { font-family:var(--font-h); font-weight:800; font-size:1.2rem; letter-spacing:-.02em; display:flex; align-items:center; gap:.4rem; }
+    .nav-dot { width:7px; height:7px; border-radius:50%; background:var(--accent); box-shadow:0 0 10px var(--accent-glow); animation:pdot 2s ease-in-out infinite; }
+    @keyframes pdot { 0%,100%{box-shadow:0 0 10px var(--accent-glow)} 50%{box-shadow:0 0 18px var(--accent-mid),0 0 30px var(--accent-dim)} }
+    .nav-links { display:flex; align-items:center; gap:2.25rem; }
+    .nav-link { font-size:.8rem; font-weight:500; color:var(--ts); transition:color var(--ease); letter-spacing:.02em; }
+    .nav-link:hover,.nav-link.active { color:var(--accent); }
+    .theme-btn { width:2.25rem; height:2.25rem; border-radius:.625rem; background:var(--bg-card); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all var(--ease); color:var(--ts); font-size:.9rem; }
+    .theme-btn:hover { border-color:var(--accent); color:var(--accent); transform:rotate(30deg); }
+    .hamburger { display:none; background:none; border:none; color:var(--tp); font-size:1.3rem; cursor:pointer; }
+    .mob-overlay { display:none; position:fixed; inset:0; background:var(--bg); z-index:99; flex-direction:column; align-items:center; justify-content:center; gap:2.5rem; opacity:0; pointer-events:none; transition:opacity .35s ease; }
+    .mob-overlay.open { opacity:1; pointer-events:all; }
+    .mob-overlay a { font-family:var(--font-h); font-size:2rem; font-weight:700; color:var(--tp); transition:color var(--ease); }
+    .mob-overlay a:hover { color:var(--accent); }
+    .mob-close { position:absolute; top:1.25rem; right:1.5rem; background:none; border:none; color:var(--tp); font-size:1.75rem; cursor:pointer; }
+
+    /* BUTTONS */
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:.5rem; padding:.875rem 1.75rem; border-radius:.75rem; font-family:var(--font-b); font-weight:600; font-size:.85rem; transition:all var(--ease); cursor:pointer; border:none; letter-spacing:.01em; }
+    .btn-p { background:var(--accent); color:#000; box-shadow:0 4px 20px var(--accent-glow); }
+    .btn-p:hover { box-shadow:0 8px 32px var(--accent-mid); transform:translateY(-3px); }
+    .btn-o { background:transparent; color:var(--tp); border:1px solid var(--border); }
+    .btn-o:hover { border-color:var(--accent); color:var(--accent); background:var(--accent-dim); transform:translateY(-2px); }
+    .btn-sm { padding:.6rem 1.15rem; font-size:.78rem; border-radius:.6rem; }
+
+    /* HERO */
+    .hero { min-height:100vh; display:flex; align-items:center; position:relative; overflow:hidden; }
+    .hero-bg { position:absolute; inset:0; z-index:0; background-image:radial-gradient(circle at 1px 1px,var(--border) 1px,transparent 0); background-size:48px 48px; opacity:.4; mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,black 30%,transparent 100%); -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,black 30%,transparent 100%); }
+    .orb { position:absolute; border-radius:50%; filter:blur(80px); pointer-events:none; z-index:0; animation:float 8s ease-in-out infinite; }
+    .orb1 { width:500px; height:500px; top:-10%; right:-5%; background:radial-gradient(circle,var(--accent-dim) 0%,transparent 70%); }
+    .orb2 { width:350px; height:350px; bottom:5%; left:-5%; background:radial-gradient(circle,rgba(125,249,255,.06) 0%,transparent 70%); animation-delay:-3s; }
+    .orb3 { width:200px; height:200px; top:40%; left:50%; background:radial-gradient(circle,var(--accent-dim) 0%,transparent 70%); animation-delay:-5s; }
+    @keyframes float { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(20px,-25px) scale(1.05)} 66%{transform:translate(-15px,15px) scale(.95)} }
+    [data-theme="light"] .orb1 { background:radial-gradient(circle,rgba(90,158,0,.08) 0%,transparent 70%); }
+    .hero-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; width:100%; }
+    .hero-badge { display:inline-flex; align-items:center; gap:.5rem; padding:.4rem 1rem .4rem .75rem; border-radius:9999px; background:var(--accent-dim); border:1px solid var(--accent); font-size:.72rem; font-weight:600; color:var(--accent); margin-bottom:2rem; letter-spacing:.06em; }
+    .hero-badge .pulse { width:7px; height:7px; border-radius:50%; background:var(--accent); position:relative; }
+    .hero-badge .pulse::after { content:''; position:absolute; inset:-4px; border-radius:50%; border:1.5px solid var(--accent); animation:ping 1.8s ease-out infinite; }
+    @keyframes ping { 0%{transform:scale(1);opacity:.7} 100%{transform:scale(2.8);opacity:0} }
+    .hero h1 { font-size:clamp(2.8rem,7vw,5rem); letter-spacing:-.04em; line-height:1.02; margin-bottom:1.5rem; }
+    .hero .sub { font-size:1.05rem; color:var(--ts); max-width:28rem; line-height:1.75; font-weight:300; margin-bottom:2.5rem; }
+    .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:3.5rem; }
+    .hero-stats { display:flex; gap:1rem; flex-wrap:wrap; }
+    .stat-c { padding:1rem 1.25rem; border-radius:.875rem; background:var(--bg-card); border:1px solid var(--border); backdrop-filter:blur(12px); transition:all var(--ease); min-width:100px; }
+    .stat-c:hover { border-color:var(--accent); transform:translateY(-2px); }
+    .stat-c .n { font-family:var(--font-h); font-size:1.5rem; font-weight:800; color:var(--accent); letter-spacing:-.02em; }
+    .stat-c .l { font-size:.65rem; color:var(--tt); text-transform:uppercase; letter-spacing:.12em; font-weight:600; margin-top:.15rem; }
+    .code-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--rxl); padding:1.5rem; position:relative; overflow:hidden; backdrop-filter:blur(12px); box-shadow:var(--sh); }
+    .code-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--accent),rgba(125,249,255,.5),transparent); }
+    .code-dots { display:flex; gap:6px; margin-bottom:1rem; padding-bottom:.75rem; border-bottom:1px solid var(--border); }
+    .code-dots span { width:10px; height:10px; border-radius:50%; }
+    .code-dots span:nth-child(1){background:#ff5f57} .code-dots span:nth-child(2){background:#ffbd2e} .code-dots span:nth-child(3){background:#28c840}
+    .cc { font-family:var(--font-m); font-size:.78rem; line-height:1.9; color:var(--ts); }
+    .kw{color:#c792ea} .fn{color:#82aaff} .str{color:var(--accent)} .cm{color:var(--tt);font-style:italic} .num-c{color:#f78c6c} .op{color:#89ddff}
+    [data-theme="light"] .kw{color:#8839ef} [data-theme="light"] .fn{color:#1e66f5} [data-theme="light"] .str{color:#40a02b} [data-theme="light"] .cm{color:#9ca0b0} [data-theme="light"] .num-c{color:#fe640b} [data-theme="light"] .op{color:#179299}
+    .cursor { display:inline-block; width:2px; height:1em; background:var(--accent); margin-left:2px; animation:blink 1s step-end infinite; vertical-align:text-bottom; }
+    @keyframes blink { 50%{opacity:0} }
+
+    /* ABOUT */
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; }
+    .about-text p { color:var(--ts); line-height:1.85; margin-bottom:1.25rem; font-weight:300; font-size:.95rem; }
+    .accent-line { width:3px; height:3rem; background:linear-gradient(180deg,var(--accent),transparent); border-radius:2px; margin-bottom:1.5rem; }
+    .hi-cards { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .hi-card { padding:1.5rem; border-radius:var(--r); background:var(--bg-card); border:1px solid var(--border); transition:all var(--ease); position:relative; overflow:hidden; }
+    .hi-card::after { content:''; position:absolute; inset:0; border-radius:var(--r); background:linear-gradient(135deg,var(--accent-dim),transparent); opacity:0; transition:opacity var(--ease); }
+    .hi-card:hover { border-color:var(--accent); transform:translateY(-6px) scale(1.01); }
+    .hi-card:hover::after { opacity:1; }
+    .hi-card > * { position:relative; z-index:1; }
+    .hi-card .ic { width:2.75rem; height:2.75rem; border-radius:.75rem; background:linear-gradient(135deg,var(--accent-dim),var(--accent-glow)); display:flex; align-items:center; justify-content:center; color:var(--accent); font-size:1.1rem; margin-bottom:.75rem; }
+    .hi-card h4 { font-size:.88rem; margin-bottom:.35rem; }
+    .hi-card p { font-size:.78rem; color:var(--tt); font-weight:300; line-height:1.55; }
+
+    /* PROJECTS */
+    .projects-bg { background:var(--bg-el); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .proj-feat { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--rxl); overflow:hidden; transition:all var(--ease); display:grid; grid-template-columns:1fr 1fr; position:relative; margin-bottom:1.5rem; }
+    .proj-feat::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--accent),rgba(125,249,255,.4),transparent); opacity:0; transition:opacity var(--ease); }
+    .proj-feat:hover { border-color:var(--bh); box-shadow:var(--sh); }
+    .proj-feat:hover::before { opacity:1; }
+    .proj-thumb { position:relative; overflow:hidden; min-height:280px; }
+    .proj-thumb img { width:100%; height:100%; object-fit:cover; transition:transform .6s ease; }
+    .proj-feat:hover .proj-thumb img,.proj-card:hover .proj-thumb img { transform:scale(1.06); }
+    .thumb-ov { position:absolute; inset:0; background:linear-gradient(135deg,rgba(0,0,0,.4),rgba(0,0,0,.1)); }
+    .proj-body { padding:2.5rem; display:flex; flex-direction:column; justify-content:center; }
+    .be-badge { display:inline-flex; align-items:center; gap:.4rem; background:var(--accent-dim); border:1px solid rgba(186,255,57,.25); color:var(--accent); font-size:.68rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:.3rem .75rem; border-radius:100px; margin-bottom:.75rem; width:fit-content; }
+    [data-theme="light"] .be-badge { border-color:rgba(90,158,0,.25); }
+    .proj-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--rxl); overflow:hidden; transition:all var(--ease); position:relative; }
+    .proj-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--accent),transparent); opacity:0; transition:opacity var(--ease); }
+    .proj-card:hover { border-color:var(--bh); transform:translateY(-6px); box-shadow:var(--sh); }
+    .proj-card:hover::before { opacity:1; }
+    .proj-card .proj-thumb { height:180px; }
+    .proj-card .proj-body { padding:1.75rem; }
+    .proj-grid2 { display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; }
+    .proj-num { font-family:var(--font-m); font-size:.7rem; color:var(--accent); font-weight:600; letter-spacing:.05em; margin-bottom:.5rem; opacity:.7; }
+    .proj-body h3 { font-size:1.15rem; margin-bottom:.5rem; letter-spacing:-.01em; }
+    .proj-body .desc { color:var(--ts); font-size:.88rem; font-weight:300; line-height:1.65; margin-bottom:1rem; }
+    .tags { display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:1.25rem; }
+    .tag { padding:.25rem .65rem; border-radius:.4rem; font-size:.68rem; font-weight:600; background:var(--accent-dim); color:var(--accent); display:flex; align-items:center; gap:.3rem; }
+    .tag::before { content:''; width:4px; height:4px; border-radius:50%; background:var(--accent); opacity:.6; }
+    .plinks { display:flex; gap:.6rem; flex-wrap:wrap; }
+
+    /* BACKEND EXPANDABLE */
+    .be-toggle { display:inline-flex; align-items:center; gap:.5rem; font-size:.78rem; font-weight:600; color:var(--accent); background:var(--accent-dim); border:1px solid rgba(186,255,57,.2); border-radius:.5rem; padding:.45rem .9rem; cursor:pointer; transition:all var(--ease); margin-top:.75rem; user-select:none; }
+    [data-theme="light"] .be-toggle { border-color:rgba(90,158,0,.2); }
+    .be-toggle:hover { background:var(--accent-glow); }
+    .be-toggle .chev { transition:transform .3s ease; font-size:.65rem; }
+    .be-toggle.open .chev { transform:rotate(180deg); }
+    .be-panel { display:none; margin-top:1.25rem; background:var(--bg-el); border:1px solid var(--border); border-radius:var(--rl); overflow:hidden; }
+    .be-panel.open { display:block; animation:fadeUp .35s ease; }
+    .bp-tabs { display:flex; border-bottom:1px solid var(--border); overflow-x:auto; }
+    .bp-tab { padding:.75rem 1.25rem; font-size:.75rem; font-weight:600; color:var(--ts); cursor:pointer; border-bottom:2px solid transparent; white-space:nowrap; transition:all var(--ease); letter-spacing:.02em; }
+    .bp-tab:hover { color:var(--tp); }
+    .bp-tab.active { color:var(--accent); border-bottom-color:var(--accent); }
+    .bp-content { padding:1.75rem; }
+    .bp-pane { display:none; }
+    .bp-pane.active { display:block; animation:fadeUp .25s ease; }
+    .bp-pane h5 { font-family:var(--font-h); font-size:.9rem; font-weight:700; color:var(--tp); margin-bottom:.6rem; margin-top:1.25rem; letter-spacing:-.01em; }
+    .bp-pane h5:first-child { margin-top:0; }
+    .bp-pane p { font-size:.82rem; color:var(--ts); line-height:1.75; font-weight:300; margin-bottom:.5rem; }
+    .bp-pane ul { list-style:none; margin-bottom:.5rem; }
+    .bp-pane ul li { font-size:.82rem; color:var(--ts); line-height:1.7; font-weight:300; display:flex; align-items:flex-start; gap:.5rem; margin-bottom:.2rem; }
+    .bp-pane ul li::before { content:'→'; color:var(--accent); font-size:.7rem; margin-top:.15rem; flex-shrink:0; }
+    .code-block { background:var(--bg-solid); border:1px solid var(--border); border-radius:.75rem; padding:1rem 1.25rem; margin:.75rem 0; font-family:var(--font-m); font-size:.74rem; line-height:1.85; color:var(--ts); overflow-x:auto; }
+    .code-block .hl { color:var(--accent); }
+    .code-block .cm2 { color:var(--tt); font-style:italic; }
+    .flow-diagram { display:flex; flex-direction:column; gap:.35rem; margin:.75rem 0; }
+    .flow-step { display:flex; align-items:center; gap:.75rem; font-size:.8rem; }
+    .fs-num { width:1.5rem; height:1.5rem; border-radius:50%; background:var(--accent-dim); border:1px solid var(--accent); color:var(--accent); font-family:var(--font-m); font-size:.65rem; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .fs-text { color:var(--ts); font-weight:300; font-size:.8rem; }
+    .flow-arrow { color:var(--tt); font-size:.65rem; margin-left:2.25rem; }
+    .db-table { width:100%; border-collapse:collapse; font-size:.78rem; margin:.75rem 0; border-radius:.75rem; overflow:hidden; border:1px solid var(--border); }
+    .db-table th { background:var(--accent-dim); color:var(--accent); font-family:var(--font-m); font-weight:600; font-size:.7rem; letter-spacing:.05em; padding:.6rem 1rem; text-align:left; }
+    .db-table td { padding:.55rem 1rem; color:var(--ts); font-family:var(--font-m); font-size:.75rem; border-top:1px solid var(--border); }
+    .db-table tr:hover td { background:var(--bg-card); }
+    .type-badge { background:rgba(130,170,255,.1); color:#82aaff; padding:.15rem .5rem; border-radius:.3rem; font-size:.68rem; }
+    [data-theme="light"] .type-badge { background:rgba(30,102,245,.08); color:#1e66f5; }
+    .outcome-grid { display:grid; grid-template-columns:1fr 1fr; gap:.75rem; margin-top:.75rem; }
+    .outcome-item { background:var(--bg-card); border:1px solid var(--border); border-radius:.75rem; padding:.9rem 1rem; display:flex; align-items:flex-start; gap:.6rem; }
+    .oi-icon { color:var(--accent); font-size:.85rem; margin-top:.1rem; flex-shrink:0; }
+    .outcome-item p { font-size:.78rem; color:var(--ts); line-height:1.5; font-weight:300; }
+
+    /* SKILLS */
+    .skills-bg-grid { position:absolute; inset:0; z-index:0; background-image:radial-gradient(circle at 1px 1px,var(--border) 1px,transparent 0); background-size:40px 40px; opacity:.3; mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 20%,transparent 100%); -webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 20%,transparent 100%); }
+    .skills-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; position:relative; z-index:1; }
+    .sk-group { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--rl); padding:2rem; transition:all var(--ease); position:relative; overflow:hidden; }
+    .sk-group::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--accent),transparent); opacity:0; transition:opacity var(--ease); }
+    .sk-group:hover { border-color:var(--bh); box-shadow:var(--sh); transform:translateY(-4px); }
+    .sk-group:hover::after { opacity:1; }
+    .sk-icon { width:3rem; height:3rem; border-radius:.875rem; background:linear-gradient(135deg,var(--accent-dim),var(--accent-glow)); display:flex; align-items:center; justify-content:center; color:var(--accent); font-size:1.2rem; margin-bottom:1.25rem; }
+    .sk-group h4 { font-size:.95rem; margin-bottom:1rem; }
+    .sk-list { display:flex; flex-direction:column; gap:.6rem; }
+    .sk-item { display:flex; align-items:center; gap:.6rem; font-size:.82rem; color:var(--ts); padding:.35rem 0; transition:color var(--ease); }
+    .sk-item:hover { color:var(--tp); }
+    .sk-item i { color:var(--accent); font-size:.9rem; width:1.1rem; text-align:center; }
+
+    /* PROJECT CARD ANIMATIONS */
+    .proj-card { transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1); }
+    .proj-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 24px 60px rgba(0,0,0,0.4), 0 0 0 1px var(--accent); }
+    [data-theme="light"] .proj-card:hover { box-shadow: 0 24px 60px rgba(0,0,0,0.12), 0 0 0 1px var(--accent); }
+    .proj-card .proj-thumb { overflow: hidden; position: relative; }
+    .proj-card .proj-thumb img { transition: transform 0.7s cubic-bezier(0.4,0,0.2,1), filter 0.4s ease; filter: brightness(0.85); }
+    .proj-card:hover .proj-thumb img { transform: scale(1.1); filter: brightness(1); }
+    .proj-card .proj-body { transition: background 0.4s ease; }
+    .proj-card:hover .proj-body { background: linear-gradient(180deg, var(--bg-card), var(--accent-dim)); }
+
+    /* shimmer on card border */
+    .proj-card::after { content:''; position:absolute; inset:-1px; border-radius:var(--rxl); background: linear-gradient(135deg, var(--accent), rgba(125,249,255,0.5), transparent, transparent); opacity:0; transition: opacity 0.4s ease; z-index:-1; }
+    .proj-card:hover::after { opacity:0.3; }
+
+    /* tag pop animation */
+    .proj-card:hover .tag { animation: tagPop 0.3s var(--bounce) forwards; }
+    .proj-card:hover .tag:nth-child(1) { animation-delay: 0.05s; }
+    .proj-card:hover .tag:nth-child(2) { animation-delay: 0.1s; }
+    .proj-card:hover .tag:nth-child(3) { animation-delay: 0.15s; }
+    .proj-card:hover .tag:nth-child(4) { animation-delay: 0.2s; }
+    @keyframes tagPop { 0%{transform:scale(1)} 50%{transform:scale(1.12)} 100%{transform:scale(1)} }
+
+    /* button glow on hover */
+    .proj-card:hover .btn-p { box-shadow: 0 0 20px var(--accent-mid); }
+
+    /* Featured project extra animation */
+    .proj-feat { transition: all 0.4s ease; }
+    .proj-feat:hover { transform: translateY(-6px); box-shadow: 0 32px 80px rgba(0,0,0,0.45), 0 0 0 1px var(--accent); }
+    [data-theme="light"] .proj-feat:hover { box-shadow: 0 32px 80px rgba(0,0,0,0.1), 0 0 0 1px var(--accent); }
+    .proj-feat .proj-thumb img { transition: transform 0.7s ease, filter 0.4s ease; filter: brightness(0.85); }
+    .proj-feat:hover .proj-thumb img { transform: scale(1.08); filter: brightness(1); }
+
+    /* proj-num color flash */
+    .proj-card:hover .proj-num, .proj-feat:hover .proj-num { color: var(--accent); opacity: 1; letter-spacing: .1em; transition: all 0.3s ease; }
+    .proj-card.ai-card .thumb-ov { background: linear-gradient(135deg, rgba(186,255,57,0.07) 0%, rgba(0,0,0,0.35) 100%); }
+    [data-theme="light"] .proj-card.ai-card .thumb-ov { background: linear-gradient(135deg, rgba(90,158,0,0.07) 0%, rgba(0,0,0,0.2) 100%); }
+    .thumb-ov { background: linear-gradient(135deg, rgba(186,255,57,0.07) 0%, rgba(0,0,0,0.38) 100%) !important; }
+    [data-theme="light"] .thumb-ov { background: linear-gradient(135deg, rgba(90,158,0,0.07) 0%, rgba(0,0,0,0.22) 100%) !important; }
+    .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:start; }
+    .contact-items { display:flex; flex-direction:column; gap:1rem; }
+    .ci { display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border-radius:var(--r); background:var(--bg-card); border:1px solid var(--border); transition:all var(--ease); position:relative; overflow:hidden; }
+    .ci::after { content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background:var(--accent); transform:scaleY(0); transition:transform var(--ease); transform-origin:bottom; }
+    .ci:hover { border-color:var(--accent); transform:translateX(6px); }
+    .ci:hover::after { transform:scaleY(1); }
+    .ci-icon { width:2.75rem; height:2.75rem; border-radius:.75rem; background:linear-gradient(135deg,var(--accent-dim),var(--accent-glow)); display:flex; align-items:center; justify-content:center; color:var(--accent); font-size:1rem; flex-shrink:0; }
+    .ci-lbl { font-size:.65rem; color:var(--tt); text-transform:uppercase; letter-spacing:.12em; font-weight:700; }
+    .ci-val { font-size:.92rem; color:var(--tp); font-weight:500; }
+    .cta-box { background:var(--bg-card); border-radius:var(--rxl); padding:2.5rem; position:relative; overflow:hidden; border:1px solid transparent; background-clip:padding-box; }
+    .cta-box::before { content:''; position:absolute; inset:-1px; border-radius:var(--rxl); z-index:-1; background:linear-gradient(135deg,var(--accent),rgba(125,249,255,.3),var(--border)); opacity:.5; }
+    .cta-box::after { content:''; position:absolute; inset:0; border-radius:calc(var(--rxl) - 1px); z-index:-1; background:var(--bg-solid); }
+    .cta-box h3 { font-size:1.5rem; margin-bottom:1rem; letter-spacing:-.02em; position:relative; }
+    .cta-box p { color:var(--ts); font-weight:300; line-height:1.75; margin-bottom:1.5rem; font-size:.95rem; position:relative; }
+
+    /* FOOTER */
+    .footer { padding:2.5rem 0; border-top:1px solid var(--border); text-align:center; }
+    .footer-links { display:flex; justify-content:center; gap:1.5rem; margin-bottom:1rem; }
+    .footer-links a { color:var(--tt); font-size:.82rem; transition:color var(--ease); }
+    .footer-links a:hover { color:var(--accent); }
+    .footer p { font-size:.78rem; color:var(--tt); font-weight:300; }
+
+    /* RESPONSIVE */
+    @media(max-width:1024px) { .skills-grid{grid-template-columns:repeat(2,1fr)} .hero-grid{grid-template-columns:1fr;gap:2rem} .code-card-wrap{display:none} }
+    @media(max-width:768px) { .nav-links{display:none} .hamburger{display:flex} .mob-overlay{display:flex} .about-grid,.contact-grid{grid-template-columns:1fr;gap:2.5rem} .proj-grid2{grid-template-columns:1fr} .proj-feat{grid-template-columns:1fr} .proj-thumb{min-height:200px} .skills-grid{grid-template-columns:1fr} .section{padding:5rem 0} .hi-cards{grid-template-columns:1fr} .outcome-grid{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo">Ansh<span class="nav-dot"></span></a>
+    <div class="nav-links">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <button class="theme-btn" id="themeToggle" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+    </div>
+    <div style="display:flex;align-items:center;gap:.75rem">
+      <button class="theme-btn" id="themeToggleMob" style="display:none" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+      <button class="hamburger" id="menuBtn" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mob-overlay" id="mobMenu">
+  <button class="mob-close" id="menuClose"><i class="fa-solid fa-xmark"></i></button>
+  <a href="#about" class="mob-link">About</a>
+  <a href="#projects" class="mob-link">Projects</a>
+  <a href="#skills" class="mob-link">Skills</a>
+  <a href="#contact" class="mob-link">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div style="position:relative;z-index:1">
+        <div class="hero-badge ani" style="animation-delay:.2s"><span class="pulse"></span>Available for Freelance</div>
+        <h1 class="ani" style="animation-delay:.35s">Front-End<br>Developer<span class="grad">.</span></h1>
+        <p class="sub ani" style="animation-delay:.5s">I craft fast, responsive, pixel-perfect websites — from concept to deployment. Clean code, thoughtful design, tangible results.</p>
+        <div class="hero-btns ani" style="animation-delay:.65s">
+          <a href="#projects" class="btn btn-p">View My Work <i class="fa-solid fa-arrow-down" style="font-size:.7rem"></i></a>
+          <a href="#contact" class="btn btn-o">Get in Touch</a>
+        </div>
+        <div class="hero-stats ani" style="animation-delay:.8s">
+          <div class="stat-c"><div class="n">4+</div><div class="l">Projects</div></div>
+          <div class="stat-c"><div class="n">8+</div><div class="l">Technologies</div></div>
+          <div class="stat-c"><div class="n">&lt;2s</div><div class="l">Avg Load</div></div>
+          <div class="stat-c"><div class="n">100%</div><div class="l">Responsive</div></div>
+        </div>
+      </div>
+      <div class="code-card-wrap ani" style="animation-delay:.9s;position:relative;z-index:1">
+        <div class="code-card">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <div class="cc">
+            <div><span class="cm">// ansh.config.js</span></div>
+            <div><span class="kw">const</span> <span class="fn">developer</span> <span class="op">=</span> {</div>
+            <div>&nbsp;&nbsp;name<span class="op">:</span> <span class="str">"Ansh Verma"</span>,</div>
+            <div>&nbsp;&nbsp;role<span class="op">:</span> <span class="str">"Frontend Developer"</span>,</div>
+            <div>&nbsp;&nbsp;stack<span class="op">:</span> [<span class="str">"HTML"</span>, <span class="str">"CSS"</span>, <span class="str">"JS"</span>],</div>
+            <div>&nbsp;&nbsp;backend<span class="op">:</span> <span class="str">"Supabase"</span>,</div>
+            <div>&nbsp;&nbsp;available<span class="op">:</span> <span class="kw">true</span>,</div>
+            <div>&nbsp;&nbsp;passion<span class="op">:</span> <span class="str">"∞"</span></div>
+            <div>}<span class="op">;</span></div>
+            <div>&nbsp;</div>
+            <div><span class="fn">buildSomethingGreat</span>()<span class="op">;</span><span class="cursor"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="accent-line reveal"></div>
+        <span class="section-label reveal">About Me</span>
+        <h2 class="section-title reveal d1">Design-driven<br>development<span class="ac">.</span></h2>
+        <p class="reveal d2">I'm Ansh Verma — a frontend developer based in India focused on building modern, performant web experiences. I care deeply about the space where design meets code, creating interfaces that aren't just functional but genuinely enjoyable to use.</p>
+        <p class="reveal d3">My approach starts mobile-first and prioritizes performance at every step. Whether it's a landing page, a dashboard, or a complete marketing site — every pixel is intentional, every interaction is considered.</p>
+        <p class="reveal d4">I specialize in translating design concepts into clean code using modern HTML, CSS, and JavaScript — and I connect it to real backends using Supabase when the project needs it.</p>
+      </div>
+      <div class="hi-cards">
+        <div class="hi-card reveal"><div class="ic"><i class="fa-solid fa-paintbrush"></i></div><h4>Design to Code</h4><p>Pixel-perfect translation from mockups to production-ready interfaces</p></div>
+        <div class="hi-card reveal d1"><div class="ic"><i class="fa-solid fa-mobile-screen"></i></div><h4>Responsive First</h4><p>Layouts that work flawlessly across every screen size and device</p></div>
+        <div class="hi-card reveal d2"><div class="ic"><i class="fa-solid fa-bolt"></i></div><h4>Speed Optimized</h4><p>Sub-2s load times with optimized assets and clean semantic code</p></div>
+        <div class="hi-card reveal d3"><div class="ic"><i class="fa-solid fa-rocket"></i></div><h4>Full Delivery</h4><p>End-to-end development from first line of code to live deployment</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PROJECTS -->
+<section class="section projects-bg" id="projects">
+  <div class="container">
+    <div style="margin-bottom:3rem">
+      <span class="section-label reveal">Selected Work</span>
+      <h2 class="section-title reveal d1">Projects<span class="ac">.</span></h2>
+      <p class="section-desc reveal d2">Real builds. Real code. Designed, developed, and deployed from scratch.</p>
+    </div>
+
+    <!-- FEATURED: IronPulse -->
+    <div class="proj-feat reveal">
+      <div class="proj-thumb">
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop" alt="IronPulse Fitness gym website" loading="lazy">
+        <div class="thumb-ov"></div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-num">// 01 — FEATURED</div>
+        <div class="be-badge"><i class="fa-solid fa-server" style="font-size:.6rem"></i> Full-Stack · Live Backend</div>
+        <h3>IronPulse Fitness</h3>
+        <p class="desc">A production-ready premium gym website for Alambagh, Lucknow. Features a real working backend — membership inquiries are validated client-side, sent to a Supabase Edge Function, stored in PostgreSQL, and the gym owner is notified via WhatsApp instantly. Includes Schema.org SEO, honeypot spam protection, and a conversion-optimised dark UI.</p>
+        <div class="tags">
+          <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">Tailwind CSS</span>
+          <span class="tag">JavaScript</span><span class="tag">Supabase</span><span class="tag">PostgreSQL</span><span class="tag">Edge Functions</span>
+        </div>
+        <div class="plinks">
+          <a href="https://anshv9084-byte.github.io/GYM---WEBSITE/" target="_blank" rel="noopener" class="btn btn-sm btn-p"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+          <a href="https://github.com/anshv9084-byte/GYM---WEBSITE.git" target="_blank" rel="noopener" class="btn btn-sm btn-o"><i class="fa-brands fa-github"></i> Code</a>
+        </div>
+
+        <!-- Backend expandable button -->
+        <button class="be-toggle" id="beToggle" onclick="toggleBE()">
+          <i class="fa-solid fa-database"></i> View Backend Details <i class="fa-solid fa-chevron-down chev"></i>
+        </button>
+
+        <!-- Backend panel -->
+        <div class="be-panel" id="bePanel">
+          <div class="bp-tabs">
+            <div class="bp-tab active" onclick="switchTab('overview',this)">Overview</div>
+            <div class="bp-tab" onclick="switchTab('database',this)">Database</div>
+            <div class="bp-tab" onclick="switchTab('workflow',this)">API Flow</div>
+            <div class="bp-tab" onclick="switchTab('functions',this)">Edge Function</div>
+            <div class="bp-tab" onclick="switchTab('outcomes',this)">Outcomes</div>
+          </div>
+          <div class="bp-content">
+
+            <!-- OVERVIEW -->
+            <div class="bp-pane active" id="tab-overview">
+              <h5>Backend Overview</h5>
+              <p>The gym website has a real, functioning backend — not just a static contact form. It uses <strong style="color:var(--tp)">Supabase</strong> as the backend platform, providing a hosted PostgreSQL database, serverless Edge Functions, and a REST API — all without managing a dedicated server.</p>
+              <p>The system is designed to capture every membership inquiry automatically, store it securely, and notify the gym owner in real time via WhatsApp — turning the contact form into a live lead management pipeline.</p>
+              <h5>Backend Technologies Used</h5>
+              <ul>
+                <li>Supabase — hosted backend platform (database + functions + REST API)</li>
+                <li>PostgreSQL — relational database for persistent, structured lead storage</li>
+                <li>Supabase Edge Functions — serverless Deno runtime for server-side form handling</li>
+                <li>JavaScript Fetch API — asynchronous frontend-to-backend communication</li>
+                <li>WhatsApp deep link — instant owner notification on every form submission</li>
+                <li>Bolt.new — admin dashboard for viewing and managing all collected leads</li>
+              </ul>
+            </div>
+
+            <!-- DATABASE -->
+            <div class="bp-pane" id="tab-database">
+              <h5>Database Architecture</h5>
+              <p>A PostgreSQL database hosted on Supabase stores every membership inquiry. The main table is <code style="font-family:var(--font-m);color:var(--accent);font-size:.8rem">leads</code>.</p>
+              <table class="db-table">
+                <thead><tr><th>Column</th><th>Type</th><th>Description</th></tr></thead>
+                <tbody>
+                  <tr><td>id</td><td><span class="type-badge">UUID</span></td><td>Auto-generated unique identifier</td></tr>
+                  <tr><td>full_name</td><td><span class="type-badge">text</span></td><td>Visitor's full name</td></tr>
+                  <tr><td>phone</td><td><span class="type-badge">text</span></td><td>10-digit Indian mobile number</td></tr>
+                  <tr><td>email</td><td><span class="type-badge">text</span></td><td>Email address (optional field)</td></tr>
+                  <tr><td>interested_in</td><td><span class="type-badge">text</span></td><td>Selected plan: basic / standard / premium</td></tr>
+                  <tr><td>message</td><td><span class="type-badge">text</span></td><td>Optional fitness goals or notes</td></tr>
+                  <tr><td>created_at</td><td><span class="type-badge">timestamp</span></td><td>Auto-set on record insertion</td></tr>
+                </tbody>
+              </table>
+              <h5>Why PostgreSQL?</h5>
+              <p>PostgreSQL gives the gym owner a structured, queryable record of every lead. The admin dashboard (built on Bolt.new) connects directly to this table, allowing the owner to filter by plan, sort by date, and track follow-up status.</p>
+            </div>
+
+            <!-- WORKFLOW -->
+            <div class="bp-pane" id="tab-workflow">
+              <h5>API Workflow — Step by Step</h5>
+              <p>When a visitor submits the membership inquiry form, the following sequence runs automatically:</p>
+              <div class="flow-diagram">
+                <div class="flow-step"><div class="fs-num">1</div><div class="fs-text">Visitor fills in name, phone, plan, and optional email/message</div></div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step"><div class="fs-num">2</div><div class="fs-text">JavaScript validates client-side — phone format, name length, email pattern</div></div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step"><div class="fs-num">3</div><div class="fs-text">Honeypot field is checked — bot submissions are silently discarded</div></div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step"><div class="fs-num">4</div><div class="fs-text">A POST request is sent via <code style="font-family:var(--font-m);color:var(--accent);font-size:.77rem">fetch()</code> to the Supabase Edge Function endpoint</div></div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step"><div class="fs-num">5</div><div class="fs-text">Edge Function re-validates data server-side and inserts a row into the <code style="font-family:var(--font-m);color:var(--accent);font-size:.77rem">leads</code> table</div></div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step"><div class="fs-num">6</div><div class="fs-text">Success response is returned — the form is replaced with a confirmation message</div></div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step"><div class="fs-num">7</div><div class="fs-text">Gym owner receives an instant WhatsApp notification with the lead's full details</div></div>
+              </div>
+              <h5>Frontend Fetch Request</h5>
+              <div class="code-block">
+<span class="hl">const</span> res = <span class="hl">await</span> fetch(EDGE_FN_URL, {<br>
+&nbsp;&nbsp;method: <span class="hl">'POST'</span>,<br>
+&nbsp;&nbsp;headers: { <span class="hl">'Content-Type'</span>: <span class="hl">'application/json'</span> },<br>
+&nbsp;&nbsp;body: JSON.stringify({<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name, phone, email, plan, message, honeypot<br>
+&nbsp;&nbsp;})<br>
+});
+              </div>
+            </div>
+
+            <!-- EDGE FUNCTION -->
+            <div class="bp-pane" id="tab-functions">
+              <h5>Supabase Edge Function — <code style="font-family:var(--font-m);font-size:.82rem">submit-lead</code></h5>
+              <p>A serverless Supabase Edge Function handles all form processing. It runs on Deno at the edge, close to the user, ensuring fast response times with no cold starts.</p>
+              <h5>Responsibilities</h5>
+              <ul>
+                <li>Receive and parse the JSON form payload from the frontend</li>
+                <li>Perform server-side validation — phone format, required fields, data types</li>
+                <li>Check the honeypot field and reject bot submissions before any DB writes</li>
+                <li>Insert the validated lead record into the PostgreSQL <code style="font-family:var(--font-m);color:var(--accent);font-size:.78rem">leads</code> table</li>
+                <li>Return a structured JSON success or error response to the frontend</li>
+              </ul>
+              <h5>Pseudo-code Logic</h5>
+              <div class="code-block">
+<span class="cm2">// Edge Function: submit-lead (Deno runtime)</span><br>
+<span class="hl">if</span> (honeypot !== <span class="hl">''</span>) <span class="hl">return</span> error(<span class="hl">'Bot detected'</span>);<br>
+<span class="hl">if</span> (!isValidPhone(phone)) <span class="hl">return</span> error(<span class="hl">'Invalid phone'</span>);<br>
+<span class="hl">if</span> (!name || !plan) <span class="hl">return</span> error(<span class="hl">'Missing required fields'</span>);<br><br>
+<span class="hl">await</span> supabase<br>
+&nbsp;&nbsp;.from(<span class="hl">'leads'</span>)<br>
+&nbsp;&nbsp;.insert({ full_name, phone, email, interested_in, message });<br><br>
+<span class="hl">return</span> { success: <span class="hl">true</span>, message: <span class="hl">'Lead saved successfully'</span> };
+              </div>
+              <h5>WhatsApp Notification Message</h5>
+              <p>After a successful DB insert, a WhatsApp deep link fires with this pre-filled message for the gym owner:</p>
+              <div class="code-block">
+New Gym Lead 🏋️<br><br>
+Name: <span class="hl">Rahul Sharma</span><br>
+Phone: <span class="hl">9876543210</span><br>
+Plan: <span class="hl">Premium — ₹3,999/mo</span><br>
+Message: <span class="hl">Looking to lose weight and build muscle</span>
+              </div>
+            </div>
+
+            <!-- OUTCOMES -->
+            <div class="bp-pane" id="tab-outcomes">
+              <h5>Admin Dashboard</h5>
+              <p>The backend integrates with an admin dashboard built using <strong style="color:var(--tp)">Bolt.new</strong>. It connects directly to the Supabase PostgreSQL database, giving the gym owner a clean interface to manage all leads:</p>
+              <ul>
+                <li>View all submitted membership inquiries in a sortable table</li>
+                <li>Filter leads by membership plan (Basic, Standard, Premium)</li>
+                <li>Sort by submission date to prioritize the most recent inquiries</li>
+                <li>Track follow-up status for each potential member</li>
+              </ul>
+              <h5>What the Backend Enables</h5>
+              <div class="outcome-grid">
+                <div class="outcome-item"><div class="oi-icon"><i class="fa-solid fa-database"></i></div><p>Every inquiry is permanently stored — nothing is lost, even when the owner is offline</p></div>
+                <div class="outcome-item"><div class="oi-icon"><i class="fa-solid fa-shield-halved"></i></div><p>Honeypot spam filtering keeps the database clean from automated bot submissions</p></div>
+                <div class="outcome-item"><div class="oi-icon"><i class="fa-brands fa-whatsapp"></i></div><p>Instant WhatsApp notification lets the owner follow up with leads within minutes</p></div>
+                <div class="outcome-item"><div class="oi-icon"><i class="fa-solid fa-chart-line"></i></div><p>Dashboard data shows which membership plans attract the most inquiry interest</p></div>
+              </div>
+              <h5>Full Backend Stack</h5>
+              <div class="tags" style="margin-top:.5rem">
+                <span class="tag">Supabase</span><span class="tag">PostgreSQL</span><span class="tag">Edge Functions</span>
+                <span class="tag">Deno Runtime</span><span class="tag">REST API</span><span class="tag">Bolt.new Dashboard</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- end backend panel -->
+      </div>
+    </div>
+
+    <!-- Smaller projects grid -->
+    <div class="proj-grid2">
+      <div class="proj-card reveal d1">
+        <div class="proj-thumb">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop" alt="Business landing page" loading="lazy">
+          <div class="thumb-ov"></div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-num">// 02</div>
+          <h3>Business Landing Page</h3>
+          <p class="desc">A clean, conversion-focused landing page with responsive design, smooth scroll animations, and sub-2s load time. Designed to communicate value and drive user action.</p>
+          <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span></div>
+          <div class="plinks">
+            <a href="#" class="btn btn-sm btn-p"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
+            <a href="#" class="btn btn-sm btn-o"><i class="fa-brands fa-github"></i> Code</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card ai-card reveal d2">
+        <div class="proj-thumb">
+          <img src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?q=80&w=600&auto=format&fit=crop" alt="AI Portfolio Builder Web App" loading="lazy">
+          <div class="thumb-ov"></div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-num">// 03</div>
+          <div class="be-badge"><i class="fa-solid fa-robot" style="font-size:.6rem"></i> AI-Powered · Full-Stack</div>
+          <h3>AI Portfolio Builder</h3>
+          <p class="desc">A full-stack web app that lets developers build a professional portfolio in under 60 seconds. Enter your details, pick from 5 templates and 7 accent colors, then let AI generate your bio, tagline, and project descriptions. Export to HTML or GitHub README instantly. Features user auth, saved portfolio versions, and a live code editor.</p>
+          <div class="tags">
+            <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span>
+            <span class="tag">Supabase</span><span class="tag">AI / Claude API</span><span class="tag">GitHub Pages</span>
+          </div>
+
+          <!-- Backend expandable button -->
+          <button class="be-toggle" id="beToggle2" onclick="toggleBE2()">
+            <i class="fa-solid fa-database"></i> View Backend Details <i class="fa-solid fa-chevron-down chev"></i>
+          </button>
+
+          <!-- Backend panel -->
+          <div class="be-panel" id="bePanel2">
+            <div class="bp-tabs">
+              <div class="bp-tab active" onclick="switchTab2('overview2',this)">Overview</div>
+              <div class="bp-tab" onclick="switchTab2('database2',this)">Database</div>
+              <div class="bp-tab" onclick="switchTab2('workflow2',this)">AI Flow</div>
+              <div class="bp-tab" onclick="switchTab2('features2',this)">Features</div>
+            </div>
+            <div class="bp-content">
+
+              <!-- OVERVIEW -->
+              <div class="bp-pane active" id="tab-overview2">
+                <h5>Backend Overview</h5>
+                <p>The Portfolio Builder is a full-stack application powered by <strong style="color:var(--tp)">Supabase</strong> for authentication and database, and the <strong style="color:var(--tp)">Claude AI API</strong> for intelligent content generation. Users log in, fill a multi-step form, and get a complete professional portfolio generated for them in seconds.</p>
+                <h5>Backend Technologies Used</h5>
+                <ul>
+                  <li>Supabase Auth — email/password login and signup with session management</li>
+                  <li>Supabase PostgreSQL — stores all saved portfolio versions per user</li>
+                  <li>Claude AI API — generates professional bios, taglines, and project descriptions</li>
+                  <li>JavaScript Fetch API — handles all async communication with Supabase and AI</li>
+                  <li>GitHub Pages — static hosting for the full app frontend</li>
+                </ul>
+              </div>
+
+              <!-- DATABASE -->
+              <div class="bp-pane" id="tab-database2">
+                <h5>Database Architecture</h5>
+                <p>A PostgreSQL database hosted on Supabase stores user portfolios. Each user can save and reload multiple versions.</p>
+                <table class="db-table">
+                  <thead><tr><th>Column</th><th>Type</th><th>Description</th></tr></thead>
+                  <tbody>
+                    <tr><td>id</td><td><span class="type-badge">UUID</span></td><td>Auto-generated unique identifier</td></tr>
+                    <tr><td>user_id</td><td><span class="type-badge">UUID</span></td><td>Foreign key linked to Supabase Auth user</td></tr>
+                    <tr><td>name</td><td><span class="type-badge">text</span></td><td>Developer's full name</td></tr>
+                    <tr><td>role</td><td><span class="type-badge">text</span></td><td>Job title / role</td></tr>
+                    <tr><td>skills</td><td><span class="type-badge">text[]</span></td><td>Array of skill tags</td></tr>
+                    <tr><td>projects</td><td><span class="type-badge">jsonb</span></td><td>Project list with AI-generated descriptions</td></tr>
+                    <tr><td>template</td><td><span class="type-badge">text</span></td><td>Selected template name</td></tr>
+                    <tr><td>accent_color</td><td><span class="type-badge">text</span></td><td>Chosen hex accent color</td></tr>
+                    <tr><td>created_at</td><td><span class="type-badge">timestamp</span></td><td>Auto-set on save</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- AI FLOW -->
+              <div class="bp-pane" id="tab-workflow2">
+                <h5>AI Generation Flow — Step by Step</h5>
+                <p>When the user clicks "Generate with AI", the following sequence runs:</p>
+                <div class="flow-diagram">
+                  <div class="flow-step"><div class="fs-num">1</div><div class="fs-text">User completes 4-step form — name, role, skills, and project list</div></div>
+                  <div class="flow-arrow">↓</div>
+                  <div class="flow-step"><div class="fs-num">2</div><div class="fs-text">Form data is structured into a prompt and sent to the Claude AI API via fetch()</div></div>
+                  <div class="flow-arrow">↓</div>
+                  <div class="flow-step"><div class="fs-num">3</div><div class="fs-text">AI returns a professional bio, a punchy tagline, and polished project descriptions</div></div>
+                  <div class="flow-arrow">↓</div>
+                  <div class="flow-step"><div class="fs-num">4</div><div class="fs-text">Generated content is injected into the selected template live in the browser</div></div>
+                  <div class="flow-arrow">↓</div>
+                  <div class="flow-step"><div class="fs-num">5</div><div class="fs-text">User can edit any content in the live code editor and see changes in real time</div></div>
+                  <div class="flow-arrow">↓</div>
+                  <div class="flow-step"><div class="fs-num">6</div><div class="fs-text">User exports as HTML file or GitHub README.md with one click</div></div>
+                  <div class="flow-arrow">↓</div>
+                  <div class="flow-step"><div class="fs-num">7</div><div class="fs-text">Logged-in users can save their portfolio to Supabase and reload it anytime</div></div>
+                </div>
+              </div>
+
+              <!-- FEATURES -->
+              <div class="bp-pane" id="tab-features2">
+                <h5>Key Features</h5>
+                <ul>
+                  <li>AI-generated professional bio, tagline, and project descriptions in seconds</li>
+                  <li>5 fully styled templates — Developer, Minimal, Bold, Creative, Startup</li>
+                  <li>7 accent color presets that flow through the entire portfolio theme</li>
+                  <li>Live HTML code editor — edit raw output and see changes instantly</li>
+                  <li>One-click export to HTML portfolio file or GitHub README.md</li>
+                  <li>User auth with Supabase — save and reload multiple portfolio versions</li>
+                </ul>
+                <h5>Full Stack</h5>
+                <div class="tags" style="margin-top:.5rem">
+                  <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span>
+                  <span class="tag">Supabase Auth</span><span class="tag">PostgreSQL</span><span class="tag">Claude AI API</span><span class="tag">GitHub Pages</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <!-- end backend panel -->
+
+          <div class="plinks" style="margin-top:1rem">
+            <a href="https://anshv9084-byte.github.io/PORTFOLIO-BUILDER-WEB-APP/landing.html" target="_blank" rel="noopener" class="btn btn-sm btn-p"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+            <a href="https://github.com/anshv9084-byte/PORTFOLIO-BUILDER-WEB-APP" target="_blank" rel="noopener" class="btn btn-sm btn-o"><i class="fa-brands fa-github"></i> Code</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal d3" style="grid-column:1/-1">
+        <div class="proj-body">
+          <div class="proj-num">// 04</div>
+          <h3>This Portfolio</h3>
+          <p class="desc">My personal portfolio — vanilla HTML, CSS, and JavaScript with zero frameworks. Dark/light theme with localStorage persistence, scroll-triggered reveal animations, deployed on Vercel.</p>
+          <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Vercel</span></div>
+          <div class="plinks">
+            <a href="#" class="btn btn-sm btn-p"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
+            <a href="https://github.com/anshv9084-byte/PORTFOLIO.git" target = _blank class="btn btn-sm btn-o"><i class="fa-brands fa-github"></i> Code</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SKILLS -->
+<section class="section" id="skills" style="position:relative">
+  <div class="skills-bg-grid"></div>
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3.5rem;position:relative;z-index:1">
+      <span class="section-label reveal" style="justify-content:center">Technical Skills</span>
+      <h2 class="section-title reveal d1">My toolkit<span class="ac">.</span></h2>
+      <p class="section-desc reveal d2" style="margin:0 auto">Technologies and tools I use to build modern, high-performance web experiences.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="sk-group reveal">
+        <div class="sk-icon"><i class="fa-solid fa-code"></i></div>
+        <h4>Frontend</h4>
+        <div class="sk-list">
+          <div class="sk-item"><i class="fa-brands fa-html5"></i> HTML5</div>
+          <div class="sk-item"><i class="fa-brands fa-css3-alt"></i> CSS3</div>
+          <div class="sk-item"><i class="fa-brands fa-js"></i> JavaScript (ES6+)</div>
+          <div class="sk-item"><i class="fa-solid fa-wind"></i> Tailwind CSS</div>
+        </div>
+      </div>
+      <div class="sk-group reveal d1">
+        <div class="sk-icon"><i class="fa-solid fa-database"></i></div>
+        <h4>Backend & Data</h4>
+        <div class="sk-list">
+          <div class="sk-item"><i class="fa-solid fa-bolt"></i> Supabase</div>
+          <div class="sk-item"><i class="fa-solid fa-plug"></i> REST APIs</div>
+          <div class="sk-item"><i class="fa-solid fa-server"></i> PostgreSQL</div>
+          <div class="sk-item"><i class="fa-solid fa-cloud"></i> Edge Functions</div>
+        </div>
+      </div>
+      <div class="sk-group reveal d2">
+        <div class="sk-icon"><i class="fa-solid fa-toolbox"></i></div>
+        <h4>Dev Tools</h4>
+        <div class="sk-list">
+          <div class="sk-item"><i class="fa-solid fa-terminal"></i> VS Code</div>
+          <div class="sk-item"><i class="fa-brands fa-git-alt"></i> Git & GitHub</div>
+          <div class="sk-item"><i class="fa-solid fa-triangle-exclamation"></i> Vercel</div>
+          <div class="sk-item"><i class="fa-brands fa-chrome"></i> Chrome DevTools</div>
+        </div>
+      </div>
+      <div class="sk-group reveal d3">
+        <div class="sk-icon"><i class="fa-solid fa-palette"></i></div>
+        <h4>Design</h4>
+        <div class="sk-list">
+          <div class="sk-item"><i class="fa-solid fa-mobile-screen"></i> Responsive Design</div>
+          <div class="sk-item"><i class="fa-solid fa-wand-magic-sparkles"></i> UI/UX Principles</div>
+          <div class="sk-item"><i class="fa-solid fa-gauge-high"></i> Performance</div>
+          <div class="sk-item"><i class="fa-solid fa-circle-half-stroke"></i> Theme Systems</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="container">
+    <div style="margin-bottom:3rem">
+      <span class="section-label reveal">Get in Touch</span>
+      <h2 class="section-title reveal d1">Let's work<br>together<span class="ac">.</span></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-items">
+        <a href="mailto:anshverma9084@gmail.com" class="ci reveal">
+          <div class="ci-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div><div class="ci-lbl">Email</div><div class="ci-val">anshverma9084@gmail.com</div></div>
+        </a>
+        <a href="tel:+919555918524" class="ci reveal d1">
+          <div class="ci-icon"><i class="fa-solid fa-phone"></i></div>
+          <div><div class="ci-lbl">Phone</div><div class="ci-val">+91 9555918524</div></div>
+        </a>
+        <a href="https://github.com/anshv9084-byte" target="_blank" rel="noopener" class="ci reveal d2">
+          <div class="ci-icon"><i class="fa-brands fa-github"></i></div>
+          <div><div class="ci-lbl">GitHub</div><div class="ci-val">github.com/anshverma</div></div>
+        </a>
+      </div>
+      <div class="cta-box reveal d1">
+        <h3>Available for new projects</h3>
+        <p>I'm currently taking on freelance work — complete website builds, landing pages, frontend with backend integration, and design-to-code projects. Let's create something great together.</p>
+        <a href="mailto:anshverma9084@gmail.com" class="btn btn-p"><i class="fa-solid fa-paper-plane"></i> Send an Email</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-links">
+      <a href="#hero">Home</a><a href="#about">About</a>
+      <a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+    </div>
+    <p>&copy; 2026 Ansh Verma · Designed & built from scratch.</p>
+  </div>
+</footer>
+
+<script>
+  // THEME
+  const html = document.documentElement;
+  const tBtns = [document.getElementById('themeToggle'), document.getElementById('themeToggleMob')];
+  html.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
+  function updateIcons() {
+    const d = html.getAttribute('data-theme') === 'dark';
+    tBtns.forEach(b => { if(b) b.innerHTML = d ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>'; });
+  }
+  updateIcons();
+  tBtns.forEach(b => { if(b) b.addEventListener('click', () => {
+    const n = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', n); localStorage.setItem('theme', n); updateIcons();
+  }); });
+  const mt = document.getElementById('themeToggleMob');
+  function ckMt() { if(mt) mt.style.display = window.innerWidth <= 768 ? 'flex' : 'none'; }
+  ckMt(); window.addEventListener('resize', ckMt);
+
+  // NAVBAR
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+
+  // ACTIVE NAV
+  const secs = document.querySelectorAll('section[id]');
+  const nls = document.querySelectorAll('.nav-link');
+  secs.forEach(s => {
+    new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting) {
+        nls.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+        if(a) a.classList.add('active');
+      }});
+    }, { rootMargin:'-30% 0px -60% 0px' }).observe(s);
+  });
+
+  // MOBILE MENU
+  const mob = document.getElementById('mobMenu');
+  document.getElementById('menuBtn').addEventListener('click', () => { mob.classList.add('open'); document.body.style.overflow='hidden'; });
+  document.getElementById('menuClose').addEventListener('click', () => { mob.classList.remove('open'); document.body.style.overflow=''; });
+  document.querySelectorAll('.mob-link').forEach(l => l.addEventListener('click', () => { mob.classList.remove('open'); document.body.style.overflow=''; }));
+
+  // SCROLL REVEAL
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold:.08, rootMargin:'0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => {
+    el.classList.add('hidden-before-reveal');
+    ro.observe(el);
+  });
+
+  // BACKEND TOGGLE
+  function toggleBE() {
+    const btn = document.getElementById('beToggle');
+    const panel = document.getElementById('bePanel');
+    btn.classList.toggle('open');
+    panel.classList.toggle('open');
+  }
+
+  function toggleBE2() {
+    const btn = document.getElementById('beToggle2');
+    const panel = document.getElementById('bePanel2');
+    btn.classList.toggle('open');
+    panel.classList.toggle('open');
+  }
+
+  // TAB SWITCH - Project 1 (IronPulse)
+  function switchTab(name, el) {
+    document.querySelectorAll('#bePanel .bp-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('#bePanel .bp-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    el.classList.add('active');
+  }
+
+  // TAB SWITCH - Project 2 (Portfolio Builder)
+  function switchTab2(name, el) {
+    document.querySelectorAll('#bePanel2 .bp-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('#bePanel2 .bp-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    el.classList.add('active');
+  }
+</script>
+</body>
+</html>
